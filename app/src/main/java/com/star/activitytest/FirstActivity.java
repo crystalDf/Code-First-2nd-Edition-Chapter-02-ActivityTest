@@ -3,7 +3,6 @@ package com.star.activitytest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,17 +10,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class FirstActivity extends AppCompatActivity {
+public class FirstActivity extends BaseActivity {
 
+    private static final String TAG = "FirstActivity";
+    
     private static final int REQUEST_CODE = 0;
 
     private Button mFirstButton;
     private Button mActionView;
     private Button mActionDial;
+    private Button mStartSelf;
+    private Button mStartSecondActivity;
+    private Button mStartSecondActivity2ndWay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, this.toString());
+        Log.d(TAG, "Task id is " + getTaskId());
+
         setContentView(R.layout.activity_first);
 
         mFirstButton = (Button) findViewById(R.id.first_button);
@@ -63,6 +70,38 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mStartSelf = (Button) findViewById(R.id.start_self);
+        mStartSelf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mStartSecondActivity = (Button) findViewById(R.id.start_second_activity);
+        mStartSecondActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mStartSecondActivity2ndWay = (Button) findViewById(R.id.start_second_activity_2nd_way);
+        mStartSecondActivity2ndWay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
+            }
+        });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
     }
 
     @Override

@@ -10,4 +10,10 @@
         android:layout_height="wrap_content"
         android:text="@string/third_button"/>
 
+    <Button
+        android:id="@+id/finish_all_activities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/finish_all_activities"/>
+
 </LinearLayout>
