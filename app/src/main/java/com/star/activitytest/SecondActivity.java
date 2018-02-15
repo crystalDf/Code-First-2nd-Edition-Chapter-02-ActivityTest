@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 public class SecondActivity extends BaseActivity {
@@ -44,39 +43,30 @@ public class SecondActivity extends BaseActivity {
             Log.d(TAG, param1 + " " + param2);
         }
 
-        mSecondButton = (Button) findViewById(R.id.second_button);
-        mSecondButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mSecondButton = findViewById(R.id.second_button);
+        mSecondButton.setOnClickListener(v -> {
 
-                String returnedData = "Hello, FirstActivity";
+            String returnedData = "Hello, FirstActivity";
 
-                Intent intent1 = new Intent();
+            Intent intent1 = new Intent();
 
-                intent1.putExtra(RETURNED_DATA, returnedData);
+            intent1.putExtra(RETURNED_DATA, returnedData);
 
-                setResult(RESULT_OK, intent1);
+            setResult(RESULT_OK, intent1);
 
-                finish();
-            }
+            finish();
         });
 
-        mStartFirstActivity = (Button) findViewById(R.id.start_first_activity);
-        mStartFirstActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(SecondActivity.this, FirstActivity.class);
-                startActivity(intent1);
-            }
+        mStartFirstActivity = findViewById(R.id.start_first_activity);
+        mStartFirstActivity.setOnClickListener(v -> {
+            Intent intent1 = new Intent(SecondActivity.this, FirstActivity.class);
+            startActivity(intent1);
         });
 
-        mStartThirdActivity = (Button) findViewById(R.id.start_third_activity);
-        mStartThirdActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(SecondActivity.this, ThirdActivity.class);
-                startActivity(intent1);
-            }
+        mStartThirdActivity = findViewById(R.id.start_third_activity);
+        mStartThirdActivity.setOnClickListener(v -> {
+            Intent intent1 = new Intent(SecondActivity.this, ThirdActivity.class);
+            startActivity(intent1);
         });
     }
 

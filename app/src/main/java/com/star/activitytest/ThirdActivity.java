@@ -2,7 +2,6 @@ package com.star.activitytest;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 public class ThirdActivity extends BaseActivity {
@@ -19,12 +18,7 @@ public class ThirdActivity extends BaseActivity {
 
         setContentView(R.layout.activity_third);
 
-        mFinishAllActivities = (Button) findViewById(R.id.finish_all_activities);
-        mFinishAllActivities.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityCollector.finishAll();
-            }
-        });
+        mFinishAllActivities = findViewById(R.id.finish_all_activities);
+        mFinishAllActivities.setOnClickListener(v -> ActivityCollector.finishAll());
     }
 }

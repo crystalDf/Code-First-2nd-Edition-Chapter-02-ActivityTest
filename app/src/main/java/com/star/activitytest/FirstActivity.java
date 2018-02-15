@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,71 +30,51 @@ public class FirstActivity extends BaseActivity {
 
         setContentView(R.layout.activity_first);
 
-        mFirstButton = (Button) findViewById(R.id.first_button);
-        mFirstButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mFirstButton = findViewById(R.id.first_button);
+        mFirstButton.setOnClickListener(v -> {
 //                Toast.makeText(FirstActivity.this, "First Button", Toast.LENGTH_LONG).show();
 //                finish();
 //                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
 
-                String data = "Hello, SecondActivity";
+            String data = "Hello, SecondActivity";
 
-                Intent intent = new Intent("com.star.activity.ACTION_START");
-                intent.addCategory("com.star.activity.MY_CATEGORY");
+            Intent intent = new Intent("com.star.activity.ACTION_START");
+            intent.addCategory("com.star.activity.MY_CATEGORY");
 
-                intent.putExtra(SecondActivity.EXTRA_DATA, data);
+            intent.putExtra(SecondActivity.EXTRA_DATA, data);
 
 //                startActivity(intent);
-                startActivityForResult(intent, REQUEST_CODE);
-            }
+            startActivityForResult(intent, REQUEST_CODE);
         });
 
-        mActionView = (Button) findViewById(R.id.action_view);
-        mActionView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://www.baidu.com"));
-                startActivity(intent);
-            }
+        mActionView = findViewById(R.id.action_view);
+        mActionView.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://www.baidu.com"));
+            startActivity(intent);
         });
 
-        mActionDial = (Button) findViewById(R.id.action_dial);
-        mActionDial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:10086"));
-                startActivity(intent);
-            }
+        mActionDial = findViewById(R.id.action_dial);
+        mActionDial.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:10086"));
+            startActivity(intent);
         });
 
-        mStartSelf = (Button) findViewById(R.id.start_self);
-        mStartSelf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, FirstActivity.class);
-                startActivity(intent);
-            }
+        mStartSelf = findViewById(R.id.start_self);
+        mStartSelf.setOnClickListener(v -> {
+            Intent intent = new Intent(FirstActivity.this, FirstActivity.class);
+            startActivity(intent);
         });
 
-        mStartSecondActivity = (Button) findViewById(R.id.start_second_activity);
-        mStartSecondActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
-                startActivity(intent);
-            }
+        mStartSecondActivity = findViewById(R.id.start_second_activity);
+        mStartSecondActivity.setOnClickListener(v -> {
+            Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+            startActivity(intent);
         });
 
-        mStartSecondActivity2ndWay = (Button) findViewById(R.id.start_second_activity_2nd_way);
-        mStartSecondActivity2ndWay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
-            }
-        });
+        mStartSecondActivity2ndWay = findViewById(R.id.start_second_activity_2nd_way);
+        mStartSecondActivity2ndWay.setOnClickListener(v -> SecondActivity.actionStart(FirstActivity.this, "data1", "data2"));
     }
 
     @Override
